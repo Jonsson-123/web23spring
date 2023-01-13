@@ -1,6 +1,9 @@
 // Author: Jonsson-123
 // Date: 13.1.2023
 import Soupphoto from './soup_photo.jpg';
+import Menu from './menu.json';
+console.log('menu from json', Menu);
+
 const headerRight = document.querySelector('.header-right');
 headerRight.src = Soupphoto;
 
