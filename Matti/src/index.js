@@ -7,19 +7,6 @@ console.log('menu from json', Menu);
 const headerRight = document.querySelector('.header-right');
 headerRight.src = Soupphoto;
 
-const coursesEn = ["Hamburger, cream sauce and poiled potates",
-                "Goan style fish curry and whole grain rice",
-                "Vegan Chili sin carne and whole grain rice",
-                "Broccoli puree soup, side salad with two napas",
-                "Lunch baguette with BBQ-turkey filling",
-                "Cheese / Chicken / Vege / Halloum burger and french fries"];
-const coursesFi = ["Jauhelihapihvi, ruskeaa kermakastiketta ja keitettyä perunaa",
-                "Goalaista kalacurrya ja täysjyväriisiä",
-                "vegaani Chili sin carne ja täysjyväriisi",
-                "Parsakeittoa,lisäkesalaatti kahdella napaksella",
-                "Lunch baguette with BBQ-turkey filling",
-                "Juusto / Kana / Kasvis / Halloumi burgeri ja ranskalaiset"];
-
 let lang = 'fi';
 let activeMenu = coursesFi;
 
@@ -105,8 +92,3 @@ const getRandomDish = (menu) => {
   const randomIndex = Math.floor(Math.random() * menu.length);
   return menu[randomIndex];
 };
-
-
-
-// TODO: Add a button for changing the language of the menu
-// TODO: Add a button that picks a random dish from the array and displays it
