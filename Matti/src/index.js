@@ -103,7 +103,3 @@ const getRandomDish = (menu) => {
   return menu[randomIndex];
 };
 
-
-
-// TODO: Add a button for changing the language of the menu
-// TODO: Add a button that picks a random dish from the array and displays it
