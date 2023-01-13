@@ -7,18 +7,21 @@ const headerRight = document.querySelector('.header-right');
 headerRight.src = Soupphoto;
 
 let lang = 'fi';
-
 const menuItems = Object.values(Menu.courses);
-
 let activeMenu = [];
 
+/**
+ * Creates a menu based on selected language
+ * @param {string} lang - Selected language
+ * @returns array of dishes
+ */
 const createActiveMenu = (lang) => {
   activeMenu = [];
-for (let i = 0;  i < menuItems.length; i++ ) {
+for (const dish of menuItems ) {
   if (lang === 'en'){
-  activeMenu.push(menuItems[i].title_en);
+  activeMenu.push(dish.title_en);
   } else if (lang === 'fi') {
-    activeMenu.push(menuItems[i].title_fi);
+    activeMenu.push(dish.title_fi);
   }
 }
   return activeMenu;
@@ -59,9 +62,9 @@ const renderMenu = async (menu) =>  {
     alert(getRandomDish(menu));
   });
 
-  for (let i = 0;  i < menu.length; i++ ) {
+  for (const dish of menu) {
     const li = document.createElement('li');
-    li.textContent = menu[i];
+    li.textContent = dish;
     list.append(li);
   }
   menuBox.append(list);
