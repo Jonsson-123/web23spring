@@ -17,9 +17,9 @@ let activeMenu = [];
  */
 const createActiveMenu = (lang) => {
   activeMenu = [];
-for (const dish of menuItems ) {
+  for (const dish of menuItems ) {
   if (lang === 'en'){
-  activeMenu.push(dish.title_en);
+    activeMenu.push(dish.title_en);
   } else if (lang === 'fi') {
     activeMenu.push(dish.title_fi);
   }
@@ -49,6 +49,7 @@ const renderMenu = async (menu) =>  {
     renderMenu(sortMenu(menu));
   });
 
+  // Event listener on button to change language
   langButton.addEventListener('click', () => {
     if (lang === 'fi') {
     lang = 'en';
@@ -72,6 +73,7 @@ const renderMenu = async (menu) =>  {
   menuBox.append(randomButton);
   menuBox.append(sortButton);
 };
+
 
 renderMenu(createActiveMenu(lang));
 
