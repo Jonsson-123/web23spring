@@ -1,7 +1,7 @@
 // Author: Jonsson-123
 // Date 13.1.2023
 
-const maxGuesses = 10000;
+const maxGuesses = 10;
 const highestNum = 100;
 const lowestNum = 1;
 
@@ -25,20 +25,16 @@ const solveSubmitMany = document.querySelector(".solveSubmitMany");
 let guessCount = 1;
 let resetButton;
 
-console.log(randomNumber);
 introText.textContent = `We have selected a random number between ${lowestNum} and ${highestNum}. See if you can guess it in ${maxGuesses} turns or fewer. We'll tell you if your guess was too high or too low.`;
 
 let startTime = Date.now();
-
 
 const computerGuess = (guess, guessCount, randomNum) => {
 
   if (guess === randomNum) {
     return "Correct";
-
   } else if (guessCount === maxGuesses) {
     return 'Game over';
-
   } else {
     if (guess < randomNum) {
       return "Too low";
@@ -46,18 +42,14 @@ const computerGuess = (guess, guessCount, randomNum) => {
       return "Too high";
     }
   }
-
 };
 
-/** Uses binary search formula to find the wanted number
+/** Uses an algorithm like binary search, where the search zone is halved (almost) every turn. Executes 10000 times.
  *
  */
 const solveGameManyTimes = () => {
-
-
   const totalGuessCountHistory = [];
-
-  guessesAverage.textContent = "Average guesses ";
+  guessesAverage.textContent = "Average guesses needed to solve: ";
 
   // Tests the computer solving 10000 times
   for (let i = 0; i < 10000; i++) {
@@ -67,14 +59,11 @@ const solveGameManyTimes = () => {
     let guess;
     let minRange = lowestNum;
     let maxRange = highestNum;
-    //const computerGuessHistory = [];
     let returnedValue;
 
-    // Computer tries to solve the number
     while (guessCount <= maxGuesses && gameStatus !== 'solved') {
 
       guess = Math.floor((maxRange + minRange) / 2);
-
       returnedValue = computerGuess(guess, guessCount, randomNumber);
 
       if (returnedValue === 'Too low') {
@@ -84,31 +73,28 @@ const solveGameManyTimes = () => {
         maxRange = guess - 1;
       }
       if (returnedValue === 'Correct') {
-        lastResult.textContent = "Congratulations! You got it right!";
+        lastResult.textContent = "Solved!";
         lastResult.style.backgroundColor = "green";
         lowOrHi.textContent = "";
         totalGuessCountHistory.push(guessCount);
         gameStatus = 'solved';
-        console.log(gameStatus);
-        //setGameOver();
       }
       if (returnedValue === 'Game over') {
         lastResult.textContent = "!!!GAME OVER!!!";
         lastResult.style.backgroundColor = "red";
         lowOrHi.textContent = "";
         totalGuessCountHistory.push(guessCount);
-        //setGameOver();
       }
-      // guesses.textContent += guess + " ";
-      // computerGuessHistory.push(guess);
       guessCount++;
     }
   }
-  console.log(totalGuessCountHistory.length);
-  console.log(totalGuessCountHistory);
   const average = totalGuessCountHistory.reduce((a, b) => a + b) / totalGuessCountHistory.length;
   guessesAverage.textContent += average;
 };
+
+/** Uses an algorithm like binary search, where the search zone is halved (almost) every turn.
+ *
+ */
 const solveGame = () => {
 
   guesses.textContent = "All guesses: ";
@@ -125,7 +111,6 @@ const solveGame = () => {
   while (guessCount <= maxGuesses && gameStatus !== 'solved') {
 
     guess = Math.floor((maxRange + minRange) / 2);
-
     returnedValue = computerGuess(guess, guessCount, randomNumber);
 
     if (returnedValue === 'Too low') {
@@ -135,19 +120,16 @@ const solveGame = () => {
       maxRange = guess - 1;
     }
     if (returnedValue === 'Correct') {
-      lastResult.textContent = "Congratulations! You got it right!";
+      lastResult.textContent = "Solved!";
       lastResult.style.backgroundColor = "green";
       lowOrHi.textContent = "";
-      totalGuessCountHistory.push(guessCount);
       gameStatus = 'solved';
-      console.log(gameStatus);
       setGameOver();
     }
     if (returnedValue === 'Game over') {
       lastResult.textContent = "!!!GAME OVER!!!";
       lastResult.style.backgroundColor = "red";
       lowOrHi.textContent = "";
-      totalGuessCountHistory.push(guessCount);
       setGameOver();
     }
     guesses.textContent += guess + " ";
@@ -197,12 +179,9 @@ const checkGuess = () => {
   guessField.focus();
 };
 
-
-
 guessSubmit.addEventListener("click", checkGuess);
 solveSubmit.addEventListener("click", solveGame);
 solveSubmitMany.addEventListener('click', solveGameManyTimes);
-
 
 const setGameOver = () => {
   guessesTotal.textContent = "Total number of guesses: " + guessCount;
