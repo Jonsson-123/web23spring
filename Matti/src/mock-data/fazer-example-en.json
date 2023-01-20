@@ -1,0 +1,169 @@
+{
+  "RestaurantName": "Metropolia",
+  "RestaurantUrl": "https://www.compass-group.fi/en/ravintolat-ja-ruokalistat/food--co/kaupungit/espoo/metropolia/",
+  "PriceHeader": null,
+  "Footer": "Please, kindly note that the raw materials used in the restaurants may vary from the planned and therefore the product specifications and dietary labels published at web sites may differ from the final and correct information that will be given at the restaurant. Persons with allergies are advised every time to check the suitability of the offered food choices to their diet at the restaurant. Thank you for your understanding.",
+  "MenusForDays": [
+    {
+      "Date": "2023-01-16T00:00:00\u002B00:00",
+      "LunchTime": "10:45\u201313:30",
+      "SetMenus": [
+        {
+          "SortOrder": 32,
+          "Name": null,
+          "Price": null,
+          "Components": ["Butter Chicken (*, A, G, L)", "Whole grain rice\n (*, G, L, M, Veg)"]
+        },
+        {
+          "SortOrder": 33,
+          "Name": null,
+          "Price": null,
+          "Components": [
+            "Root vegetable patties (*, A, G, ILM, L, M, Veg)",
+            "Horseradish mayonnaise (A, G, ILM, L, M, Veg)",
+            "Mashed potatoes (*, A, G, ILM, L)"
+          ]
+        },
+        {
+          "SortOrder": 38,
+          "Name": null,
+          "Price": null,
+          "Components": [
+            "Fish fingers (*, A, L, M)",
+            "Yoghurt sauce with dill (*, A, G, ILM, L)",
+            "Mashed potatoes (*, A, G, ILM, L)"
+          ]
+        }
+      ]
+    },
+    {
+      "Date": "2023-01-17T00:00:00\u002B00:00",
+      "LunchTime": "10:45\u201313:30",
+      "SetMenus": [
+        {
+          "SortOrder": 30,
+          "Name": null,
+          "Price": null,
+          "Components": [
+            "Sauce Bolognaise (*, A, G, L, M, VS)",
+            "Whole grain organic pasta (*, A, ILM, L, M, Veg)"
+          ]
+        },
+        {
+          "SortOrder": 33,
+          "Name": null,
+          "Price": null,
+          "Components": [
+            "Chickpea and cauliflower curry (*, G, ILM, L, M, Veg, VS)",
+            "Whole grain rice\n (*, G, L, M, Veg)"
+          ]
+        },
+        {
+          "SortOrder": 38,
+          "Name": null,
+          "Price": null,
+          "Components": ["Creamy chicken and potato casserole\n (*, A, G, L)"]
+        }
+      ]
+    },
+    {
+      "Date": "2023-01-18T00:00:00\u002B00:00",
+      "LunchTime": "10:45\u201313:30",
+      "SetMenus": [
+        {
+          "SortOrder": 33,
+          "Name": null,
+          "Price": null,
+          "Components": ["Lentil and vegetable lasagne (*, A, ILM, L, M, Veg)"]
+        },
+        {
+          "SortOrder": 38,
+          "Name": null,
+          "Price": null,
+          "Components": ["BBQ-spiced meat loaf (A, L, M)", "Papas arrugas (*, G, ILM, L, M, Veg)"]
+        },
+        {
+          "SortOrder": 39,
+          "Name": null,
+          "Price": null,
+          "Components": [
+            "Breaded vegetable patties (A, G, ILM, L, M)",
+            "Yoghurt sauce with cucumber (A, G, ILM, L, VS)",
+            "Papas arrugas (*, G, ILM, L, M, Veg)"
+          ]
+        }
+      ]
+    },
+    {
+      "Date": "2023-01-19T00:00:00\u002B00:00",
+      "LunchTime": "10:45\u201313:30",
+      "SetMenus": [
+        {
+          "SortOrder": 30,
+          "Name": null,
+          "Price": null,
+          "Components": ["Minced chicken and beef meat lasagnette (A, L, VS)"]
+        },
+        {
+          "SortOrder": 33,
+          "Name": null,
+          "Price": null,
+          "Components": [
+            "Beetroot croquettes (*, G, ILM, L, M, Veg)",
+            "Oatghurt sauce with hummus (*, A, G, ILM, L, M, Veg, VS)",
+            "Mashed potatoes (*, A, G, ILM, L)"
+          ]
+        },
+        {
+          "SortOrder": 38,
+          "Name": null,
+          "Price": null,
+          "Components": [
+            "Rainbow trout patties (A, ILM, L)",
+            "Sour cream sauce with chives (A, G, L)",
+            "Mashed potatoes (*, A, G, ILM, L)"
+          ]
+        }
+      ]
+    },
+    {
+      "Date": "2023-01-20T00:00:00\u002B00:00",
+      "LunchTime": "10:45\u201313:30",
+      "SetMenus": [
+        {
+          "SortOrder": 33,
+          "Name": null,
+          "Price": null,
+          "Components": [
+            "Organic tofu and vegetables in sweet and sour sauce (*, A, G, ILM, L, M, Veg)",
+            "Whole grain rice\n (*, G, L, M, Veg)"
+          ]
+        },
+        {
+          "SortOrder": 38,
+          "Name": null,
+          "Price": null,
+          "Components": [
+            "Minced meat filling (*, A, L, M, VS)",
+            "Whole grain wheat tortilla (A, L, M, Veg)",
+            "Chili and sour cream sauce (A, G, L)",
+            "Whole grain rice\n (*, G, L, M, Veg)"
+          ]
+        },
+        {
+          "SortOrder": 39,
+          "Name": null,
+          "Price": null,
+          "Components": [
+            "Feta and spinach patties (A, ILM, VL, VS)",
+            "Sour cream sauce with herbs (A, G, ILM, L)",
+            "Papas arrugas (*, G, ILM, L, M, Veg)"
+          ]
+        }
+      ]
+    },
+    {"Date": "2023-01-21T00:00:00\u002B00:00", "LunchTime": null, "SetMenus": []},
+    {"Date": "2023-01-22T00:00:00\u002B00:00", "LunchTime": null, "SetMenus": []}
+  ],
+  "ErrorText": null
+}
