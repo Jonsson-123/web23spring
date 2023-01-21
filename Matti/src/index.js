@@ -1,5 +1,5 @@
 // Author: Jonsson-123
-// Date 13.1.2023
+// Date 21.1.2023
 
 const maxGuesses = 10;
 const highestNum = 100;
