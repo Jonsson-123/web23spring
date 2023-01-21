@@ -1,6 +1,6 @@
 // Author: Jonsson-123
 // Date: 13.1.2023
-import Soupphoto from './soup_photo.jpg';
+import Soupphoto from './assets/img/soup_photo1.jpg';
 import Sodexo from './modules/sodexo-data';
 import Fazer from './modules/fazer-data';
 const headerRight = document.querySelector('.header-right');
