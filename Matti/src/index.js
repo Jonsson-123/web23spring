@@ -29,11 +29,17 @@ introText.textContent = `We have selected a random number between ${lowestNum} a
 
 let startTime = Date.now();
 
-const computerGuess = (guess, guessCount, randomNum) => {
+const checkGuess = (guess, guessCount, randomNum) => {
 
   if (guess === randomNum) {
+    lastResult.textContent = 'Solved!';
+    lastResult.style.backgroundColor = 'green';
+    lowOrHi.textContent = '';
     return 'Correct';
   } else if (guessCount === maxGuesses) {
+    lastResult.textContent = '!!!GAME OVER!!!';
+    lastResult.style.backgroundColor = 'red';
+    lowOrHi.textContent = '';
     return 'Game over';
   } else {
     if (guess < randomNum) {
@@ -44,20 +50,24 @@ const computerGuess = (guess, guessCount, randomNum) => {
   }
 };
 
-/** Uses an algorithm sort of like binary search, where the search zone is halved (almost) every turn. (Executed 10000 times).
+/** Uses an algorithm sort of like binary search, where the search zone is halved (almost) every turn.
  *  maximum number of counts is 7  and theoretic max for a range of 100 numbers is also 7
  *  counted with the mathematic formula [log_2(n)+1] (depends on the range of numbers being searched).
  *  theoretical Minimum number of guesses is always 1 (when the number is in the middle of the range).
- *
+ *  @param {int} times - declares how many times the program is run
  *
  *
  */
-const solveGameManyTimes = () => {
+const solveGameManyTimes = (times) => {
   const totalGuessCountHistory = [];
-  guessesAverage.textContent = 'Average guesses needed to solve: ';
+  let playedOnlyOnce = false;
+  if (times === 1) {
+    guesses.textContent = 'All guesses: ';
+    playedOnlyOnce = true;
+  };
 
   // Tests the computer solving 10000 times
-  for (let i = 0; i < 10000; i++) {
+  for (let i = 0; i < times; i++) {
     randomNumber = Math.floor(Math.random() * (highestNum - lowestNum + 1) + lowestNum);
     guessCount = 1;
     let gameStatus = 'unsolved';
@@ -69,7 +79,7 @@ const solveGameManyTimes = () => {
     while (guessCount <= maxGuesses && gameStatus !== 'solved') {
 
       guess = Math.floor((maxRange + minRange) / 2);
-      returnedValue = computerGuess(guess, guessCount, randomNumber);
+      returnedValue = checkGuess(guess, guessCount, randomNumber);
 
       if (returnedValue === 'Too low') {
         minRange = guess + 1;
@@ -78,80 +88,29 @@ const solveGameManyTimes = () => {
         maxRange = guess - 1;
       }
       if (returnedValue === 'Correct') {
-        lastResult.textContent = 'Solved!';
-        lastResult.style.backgroundColor = 'green';
-        lowOrHi.textContent = '';
         totalGuessCountHistory.push(guessCount);
         gameStatus = 'solved';
+        if (playedOnlyOnce) setGameOver();
       }
       if (returnedValue === 'Game over') {
-        lastResult.textContent = '!!!GAME OVER!!!';
-        lastResult.style.backgroundColor = 'red';
-        lowOrHi.textContent = '';
         totalGuessCountHistory.push(guessCount);
+        if (playedOnlyOnce) setGameOver();
       }
+      if (playedOnlyOnce) guesses.textContent += guess + ' ';
       guessCount++;
     }
+    guessCount=1;
   }
-  const average = totalGuessCountHistory.reduce((a, b) => a + b) / totalGuessCountHistory.length;
-  guessesAverage.textContent += average;
-  const maxGuessCount = totalGuessCountHistory.sort();
-  console.log('Minimum amount of guesses ', maxGuessCount[0]);
-  maxGuessCount.reverse();
-  console.log('Maximum amount of guesses ',maxGuessCount[0]);
-};
-
-/** Uses an algorithm sort of like binary search, where the search zone is halved (almost) every turn.
- *  maximum number of counts is 7  and theoretic max for a range of 100 numbers is also 7
- *  counted with the mathematic formula [log_2(n)+1] (depends on the range of numbers being searched).
- *  theoretical Minimum number of guesses is always 1 (when the number is in the middle of the range).
- *
- *
- *
- */
-const solveGame = () => {
-
-  guesses.textContent = 'All guesses: ';
-  randomNumber = Math.floor(Math.random() * (highestNum - lowestNum + 1) + lowestNum);
-  guessCount = 1;
-  let gameStatus = 'unsolved';
-  let guess;
-  let minRange = lowestNum;
-  let maxRange = highestNum;
-  const computerGuessHistory = [];
-  let returnedValue;
-
-  // Computer tries to solve the number
-  while (guessCount <= maxGuesses && gameStatus !== 'solved') {
-
-    guess = Math.floor((maxRange + minRange) / 2);
-    returnedValue = computerGuess(guess, guessCount, randomNumber);
-
-    if (returnedValue === 'Too low') {
-      minRange = guess + 1;
-    }
-    if (returnedValue === 'Too high') {
-      maxRange = guess - 1;
-    }
-    if (returnedValue === 'Correct') {
-      lastResult.textContent = 'Solved!';
-      lastResult.style.backgroundColor = 'green';
-      lowOrHi.textContent = '';
-      gameStatus = 'solved';
-      setGameOver();
-    }
-    if (returnedValue === 'Game over') {
-      lastResult.textContent = '!!!GAME OVER!!!';
-      lastResult.style.backgroundColor = 'red';
-      lowOrHi.textContent = '';
-      setGameOver();
-    }
-    guesses.textContent += guess + ' ';
-    computerGuessHistory.push(guess);
-    guessCount++;
+  if (!playedOnlyOnce) {
+    guessesAverage.textContent = 'Average guesses needed to solve: ';
+    const average = totalGuessCountHistory.reduce((a, b) => a + b) / totalGuessCountHistory.length;
+    guessesAverage.textContent += average;
+    const maxGuessCount = totalGuessCountHistory.sort();
+    console.log('Minimum amount of guesses ', maxGuessCount[0]);
+    maxGuessCount.reverse();
+    console.log('Maximum amount of guesses ', maxGuessCount[0]);
   }
 };
-
 
 const guessTimer = () => {
   const spentTime = Date.now() - startTime;
@@ -161,41 +120,43 @@ const guessTimer = () => {
 
 let secondTimer = setInterval(guessTimer, 1000);
 
-const checkGuess = () => {
+
+/** function for user inputted guesses
+ *
+ *
+ */
+const playerGame = () => {
   const userGuess = Number(guessField.value);
   if (guessCount === 1) {
     guesses.textContent = 'All guesses: ';
   }
-
   guesses.textContent += userGuess + ' ';
-
-  if (userGuess === randomNumber) {
-    lastResult.textContent = 'Congratulations! You got it right!';
-    lastResult.style.backgroundColor = 'green';
-    lowOrHi.textContent = '';
+  let returnedValue = checkGuess(userGuess, guessCount, randomNumber);
+  if (returnedValue === 'Correct') {
     setGameOver();
-  } else if (guessCount === maxGuesses) {
-    lastResult.textContent = '!!!GAME OVER!!!';
-    lowOrHi.textContent = '';
+  } else if (returnedValue === 'Game over') {
     setGameOver();
   } else {
     lastResult.textContent = 'Wrong!';
     lastResult.style.backgroundColor = 'red';
-    if (userGuess < randomNumber) {
+    if (returnedValue === 'Too low') {
       lowOrHi.textContent = 'Last guess was too low!';
-    } else if (userGuess > randomNumber) {
+    } else if (returnedValue === 'Too high') {
       lowOrHi.textContent = 'Last guess was too high!';
     }
   }
-
   guessCount++;
   guessField.value = '';
   guessField.focus();
 };
 
-guessSubmit.addEventListener('click', checkGuess);
-solveSubmit.addEventListener('click', solveGame);
-solveSubmitMany.addEventListener('click', solveGameManyTimes);
+guessSubmit.addEventListener('click', playerGame);
+solveSubmit.addEventListener('click', () => {
+  solveGameManyTimes(1);
+});
+solveSubmitMany.addEventListener('click', () => {
+  solveGameManyTimes(10000);
+});
 
 const setGameOver = () => {
   guessesTotal.textContent = 'Total number of guesses: ' + guessCount;
