@@ -20,11 +20,8 @@ const fazerMenu = fazerMenuAsset.MenusForDays[0].SetMenus.map((menuItem) => {
  * @returns regexp test validation status.
  */
 const validateMeal = (meal) => {
-
-
   const regexpPattern = /^[A-ZÖÄÅ]{1}[a-zA-ZÖÄÅöäå0-9()\/\-\,\s\\]{3,63}$/;
   return regexpPattern.test(meal);
-
 };
 console.log('validateMeal', validateMeal('Mushroom and bean casserole'));
 
