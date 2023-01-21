@@ -24,12 +24,13 @@ const renderMenu = (menu, targetElem) => {
   const randomButton = document.createElement('button');
   const sortButton = document.createElement('button');
 
+
   langButton.textContent = 'Change language';
   randomButton.textContent = 'Pick a random dish';
   sortButton.textContent = 'Sort menu';
 
   sortButton.addEventListener('click', () => {
-    renderMenu(sortMenu(menu));
+    renderMenu(sortMenu(menu), targetElem);
   });
 
   // Event listener on button to change language
@@ -43,11 +44,10 @@ const renderMenu = (menu, targetElem) => {
       activeMenu[0] = Sodexo.coursesFi;
       activeMenu[1] = Fazer.coursesFi;
     }
+    renderAll();
+  }
+  );
 
-    for (const [index, menu] of activeMenu.entries()) {
-      renderMenu(menu, menuContainers[index]);
-    }
-  });
 
   randomButton.addEventListener('click', () => {
     alert(getRandomDish(menu));
@@ -58,6 +58,7 @@ const renderMenu = (menu, targetElem) => {
     li.textContent = dish;
     list.append(li);
   }
+
   targetElem.append(list);
   targetElem.append(langButton);
   targetElem.append(randomButton);
@@ -72,13 +73,13 @@ const renderMenu = (menu, targetElem) => {
  * @returns sorted menu array
  */
 
-//TODO: fix for multiple menu
 const sortMenu = (menu, order = 'asc') => {
-  menu.sort();
+  const newMenu = [...menu];
+  newMenu.sort();
   if (order === 'desc') {
-    menu.reverse();
+    newMenu.reverse();
   }
-  return menu;
+  return newMenu;
 };
 
 
@@ -92,15 +93,22 @@ const getRandomDish = (menu) => {
   return menu[randomIndex];
 };
 
+/** Generic function for rendering / rerendering all menus
+ *
+ */
+const renderAll = () => {
+  for (const [index, menu] of activeMenu.entries()) {
+    renderMenu(menu, menuContainers[index]);
+  }
+};
+
 /**
  * App initialization
  */
 const init = () => {
   activeMenu = [Sodexo.coursesFi, Fazer.coursesFi];
-  menuContainers = document.querySelectorAll('.item');
-  for (const [index, menu] of activeMenu.entries()) {
-    renderMenu(menu, menuContainers[index]);
-  }
+  menuContainers = document.querySelectorAll('.card-text');
+  renderAll();
 };
 init();
 
