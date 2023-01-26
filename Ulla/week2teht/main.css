@@ -98,16 +98,40 @@ body {
 .info-text {
   margin: 4rem auto;
   text-align: center;
+  position: relative;
 }
 .info-text p {
   font-family: Lato-Regular;
   font-size: 1.3125em;
   margin-bottom: 1rem;
 }
+.pizzaSvg{
+  background-image: url(./img/vectorfood/pizza-155771.svg);
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 10vmin;
+  aspect-ratio: 0.7972;
+  position: absolute;
+  top:45%;
+  left:10%
+
+}
+.burgerSvg{
+  background-image: url(./img/vectorfood/burger-151421.svg);
+  background-repeat: no-repeat;
+  background-size: contain;
+  position: absolute;
+  width: 10vmin;
+  aspect-ratio: 1;
+  right: 10%;
+  top:45%;
+
+}
 .restaurant-area {
   display: grid;
   grid-template-columns: repeat(2, minmax(350px, 1fr));
   gap: 4em 4em;
+  
 }
 .add {
   position: relative;
