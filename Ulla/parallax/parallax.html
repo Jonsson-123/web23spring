@@ -19,14 +19,12 @@
       background-color: aqua;
 
     }
-
     #hero {
       height: 1080px;
       overflow: hidden;
       position: relative;
       z-index: 0;
     }
-
     .layer {
       background-position: top center;
       background-repeat: no-repeat;
@@ -34,23 +32,18 @@
       width: 100%;
       height: 1080px;
       position: fixed;
-      /* position: fixed;
-    z-index: 0;
-    */
     }
-
-    .layer1 {
+    .background {
       background-image: url(./kuvat/background11920.png);
     }
 
-    .layer2 {
+    .statue {
       background-image: url(./kuvat/foreground21920.png);
     }
 
-    .layer3 {
+    .tree {
       background-image: url(./kuvat/foreground1920.png);
     }
-
     main {
       padding: 50px;
       z-index: 1;
@@ -62,12 +55,10 @@
       align-items: center;
 
     }
-
     main h1 {
       font-size: 3rem;
 
     }
-
     main p {
       width: 70%;
     }
@@ -126,21 +117,14 @@
     }
   </style>
 </head>
-
 <body>
-  <!-- z-index alempi eli 0-->
   <div class="keyart" id="hero">
-    <div class="layer layer1" data-type="parallax" data-speed="3"></div>
-    <div class="layer layer2" data-type="parallax" data-speed="7"></div>
-    <div class="layer layer3" data-type="parallax" data-speed="20"></div>
-
-
+    <div class="layer background" data-type="parallax" data-speed="20"></div>
+    <div class="layer statue" data-type="parallax" data-speed="20"></div>
+    <div class="layer tree" data-type="parallax" data-speed="50"></div>
   </div>
-
-  <!-- z-index ylempi eli 1-->
-
   <main>
-    <h1>Upea huikea parallax effektini</h1>
+    <h1>Scroll parallax</h1>
     <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Commodi asperiores obcaecati atque provident sint
       suscipit iste doloremque enim nemo illum. Nam consequuntur facilis ea iste culpa nihil eius iusto voluptate?
       Incidunt eos facilis odio, ex ut error suscipit corrupti temporibus qui saepe ullam magni repellat excepturi
