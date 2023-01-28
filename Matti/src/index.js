@@ -3,6 +3,7 @@
 import Soupphoto from './assets/img/soup_photo1.jpg';
 import Sodexo from './modules/sodexo-data';
 import Fazer from './modules/fazer-data';
+import pwaFunctions from './modules/pwa-module';
 const headerRight = document.querySelector('.header-right');
 headerRight.src = Soupphoto;
 
@@ -110,6 +111,8 @@ const init = () => {
   menuContainers = document.querySelectorAll('.card-text');
   renderAll();
 };
+
 init();
 
+pwaFunctions.applyServiceWorkers();
 
