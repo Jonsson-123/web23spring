@@ -1,7 +1,7 @@
 {
   "name": "wtmp-starter",
   "version": "1.0.7",
-  "description": "Simple boilerplate for webpack powered projects",
+  "description": "Js exercises spring 2023",
   "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -9,7 +9,7 @@
     "build": "webpack --config webpack.prod.js"
   },
   "keywords": [],
-  "author": "mattpe",
+  "author": "Jonsson-123",
   "license": "ISC",
   "devDependencies": {
     "clean-webpack-plugin": "^4.0.0",
