@@ -25,7 +25,7 @@
 }
 body {
   min-height: 100vh;
-  max-width: 75%;
+  max-width: 1500px;
   margin: auto;
 }
 .main-nav {
@@ -129,8 +129,8 @@ body {
 }
 .restaurant-area {
   display: grid;
-  grid-template-columns: repeat(2, minmax(350px, 1fr));
-  gap: 4em 4em;
+  grid-template-columns: repeat(auto-fill, minmax(32rem, 1fr));
+  gap: 2em 4em;
   
 }
 .add {
@@ -220,7 +220,7 @@ body {
 }
 
 
-@media (max-width: 1400px) {
+@media (max-width: 1600px) {
   body {
     max-width: 100%;
   }
@@ -228,6 +228,12 @@ body {
     margin-right: 1rem;
     margin-left: 1rem;
   }
+}
+
+
+@media (max-width: 950px) {
+
+
 }
 
 @media (max-width: 700px) {
@@ -238,3 +244,4 @@ body {
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   }
 }
+
