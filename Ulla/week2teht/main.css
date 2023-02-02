@@ -180,7 +180,7 @@ body {
 }
 .card-title{
   display: flex;
-  flex-direction: row;
+  flex-direction: column-reverse;
   
 }
 .location{
@@ -193,7 +193,7 @@ body {
   font-family: Lato-Heavy;
 }
 .item p {
-  font-size: 0.625em;
+  font-size: 1rem;
   margin-top: 1rem;
   font-family: Lato-Regular;
 }
@@ -219,7 +219,6 @@ body {
   fill: var(--main-bg-color);
 }
 
-
 @media (max-width: 1600px) {
   body {
     max-width: 100%;
@@ -231,9 +230,24 @@ body {
 }
 
 
-@media (max-width: 950px) {
+@media (max-width: 470px) {
 
-
+  .card-title-location {
+    position: relative;
+    margin-bottom: 3rem;
+    margin-top: 0.5rem;
+  }
+  .svg-location {
+    left: -1rem;
+    margin: 0;
+  }
+  .location{
+    left: 1.3rem;
+    top: 1rem;
+  }
+  .item{
+  display: block;
+  }
 }
 
 @media (max-width: 700px) {
@@ -243,5 +257,6 @@ body {
   .restaurant-area {
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   }
+  
 }
 
