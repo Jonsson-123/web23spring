@@ -67,6 +67,7 @@ body {
   border-radius: 0.4em;
   border: 1px solid var(--main-em-color);
   width: 15em;
+  max-width: 280px;
   margin: 0 1em;
 }
 .header {
@@ -116,7 +117,7 @@ body {
   background-repeat: no-repeat;
   background-size: contain;
   width: 10vmin;
-  aspect-ratio: 0.7972;
+  aspect-ratio: 1/0.7972;
   position: absolute;
   top:45%;
   left:10%
@@ -128,16 +129,16 @@ body {
   background-size: contain;
   position: absolute;
   width: 10vmin;
-  aspect-ratio: 1;
+  aspect-ratio: 1/1;
   right: 10%;
   top:45%;
 
 }
 .restaurant-area {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(32rem, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
   gap: 2em 2em;
-  
+  margin-bottom: 2rem;
 }
 .add {
   position: relative;
@@ -145,7 +146,6 @@ body {
   border-radius: 0.7em;
   padding: 0.8em;
   height:4em;
-  margin-bottom: 2em;
 }
 
 .svg-add {
@@ -225,59 +225,19 @@ body {
   fill: var(--main-bg-color);
 }
 
-
-
-@media (max-width: 1600px) {
-  body {
-    max-width: 100%;
-  }
-  .restaurant-area {
-    margin-right: 1rem;
-    margin-left: 1rem;
-  }
+.toggle-nav {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 2rem;
+  height: 1.5rem;
+  margin-left: 1rem;
+  margin-top: 0.45rem;
+  left: 1px;
 }
-
-
-
-@media (max-width: 700px) {
-  .restaurant-area {
-    grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
-  }
-  .burgerSvg{
-    display: none;
-  }
-  .pizzaSvg {
-    display: none;
-  }
-  .header-right{
-    display: none;
-  }
-  .header{
-    justify-content: center;
-  }
-}
-
-@media (max-width: 470px) {
-
-  .card-title{
-    margin-top: 1rem;
-    margin-bottom: 1em;
-  }
-  .card-title-location {
-    position: relative;
-    margin-left: 1rem;
-    top: -0.5rem;
-  }
-  .svg-location {
-    left: -1rem;
-    margin: 0;
-  }
-  .location{
-    left: 1.3rem;
-    top: 1rem;
-  }
-  .item{
-  display: block;
-  }
- 
+.toggle-nav .bar {
+  height: 0.1875rem;
+  width: 100%;
+  background-color: var(--main-em-color);
+  border-radius: 10px;
 }

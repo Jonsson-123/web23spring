@@ -1,0 +1,85 @@
+
+@media (max-width: 882px) {
+
+  .toggle-nav {
+    display: flex;
+    position: fixed;
+    top:1rem;
+    z-index: 2;
+  }
+  .main-nav {
+    justify-content: flex-end;
+  }
+  .nav-ul {
+    position: fixed;
+    left:-100%;
+    flex-direction: column;
+    background-color: #ffffff;
+    width: 100%;
+    text-align: center;
+    transition: 0.3s;
+    z-index: 1;
+    top: 0;
+  }
+  .nav-ul li {
+    margin: 1.5rem 0;
+  }
+  .nav-ul.active {
+    left: 0;
+  }
+}
+
+
+@media (max-width: 1600px) {
+  body {
+    max-width: 100%;
+  }
+  .restaurant-area {
+    margin-right: 1rem;
+    margin-left: 1rem;
+  }
+}
+
+@media (max-width: 700px) {
+  .restaurant-area {
+    grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+  }
+  .burgerSvg{
+    display: none;
+  }
+  .pizzaSvg {
+    display: none;
+  }
+  .header-right{
+    display: none;
+  }
+  .header{
+    justify-content: center;
+  }
+}
+
+@media (max-width: 470px) {
+
+  .card-title{
+    margin-top: 1rem;
+    margin-bottom: 1em;
+  }
+  .card-title-location {
+    position: relative;
+    margin-left: 1rem;
+    top: -0.5rem;
+  }
+  .svg-location {
+    left: -1rem;
+    margin: 0;
+  }
+  .location{
+    left: 1.3rem;
+    top: 1rem;
+  }
+  .item{
+  display: block;
+  }
+ 
+}
+
