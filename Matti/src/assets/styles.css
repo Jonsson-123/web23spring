@@ -187,6 +187,7 @@ body {
 }
 .card-title{
   display: flex;
+  margin-bottom: 1rem;
 
 }
 .location{
@@ -309,7 +310,7 @@ button {
 
   .card-title{
     margin-top: 1rem;
-    margin-bottom: 1em;
+    margin-bottom: 2em;
   }
   .card-title-location {
     position: relative;
