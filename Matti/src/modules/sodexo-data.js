@@ -34,11 +34,11 @@ const getDailyMenu = async (lang) => {
   const coursesFi = Object.values(menu.courses).map((course) => course.title_fi);
   return lang === 'en' ? coursesEn : coursesFi;
   } catch (error) {
-    throw new Error('getDailyMenu error', error);
+    console.error('getDailyMenu error', error);
   }
+  const failedFetch = [];
+  return failedFetch[0] = ['no data'];
 };
-
-
 
 const Sodexo = {getDailyMenu};
 

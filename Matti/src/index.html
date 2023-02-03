@@ -10,6 +10,11 @@
   </head>
   <body>
     <nav class="main-nav">
+      <a href="#" class="toggle-nav">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"> </span>
+      </a>
       <ul class="nav-ul">
         <li class="list-item1"><a href="#">Etusivu</a></li>
         <li class="list-item2"><a href="#">Ruokalistat</a></li>
@@ -87,7 +92,7 @@
             </g>
           </g>
         </svg>
-        <input class="search" placeholder="Etsi ravintola">
+        <input class="search" placeholder="Etsi nimellä...">
       </label>
     </nav>
     <header class="header">
@@ -95,24 +100,25 @@
         <h1>Lounari.</h1>
         <h2>Missä tänään syötäisiin.</h2>
       </section>
-      <img class="header-right" src="./assets/img/soup_photo1.jpg" alt="Kuva herkullisesta ruuasta">
+      <img class="header-right" src="./img/vegetarian-soup-on-antique-plate.jpg" alt="Herkullinen kasviskeitto">
     </header>
     <main>
       <div class="info-text">
         <p>
-          Missä tänään syötäisiin? Tuttu tarina ennen lounashetkeä.
+          Missä tänään syödään? Tuttu tarina ennen lounashetkeä.
         </p>
-        <p>Palvelu etsii lähistösi lounaspaikat ja näyttää niiden
+        <p>Palvelu etsii lounaspaikat läheltäsi ja näyttää niiden
           päivittäisen lounaslistan.
         </p>
         <p>
-          Viikottaiset
-          lounaslistat ovat myös käytettävissäsi.
+         Näet myös viikottaiset lounaslistat.
         </p>
         <p>
           Pääset niihin klikkaamalla
           ravintolan logoa.
         </p>
+        <div class="pizzaSvg"></div>
+        <div class="burgerSvg"></div>
       </div>
       <div class="restaurant-area">
         <article class="item item2">
@@ -122,21 +128,30 @@
           <div class="card-content">
             <div class="card-title">
               <h3>Ravintola 1</h3>
-              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="svg-location"
-                version="1.1" x="0px" y="0px" viewBox="0 0 48 60" style="enable-background: new 0 0 48 48"
-                xml:space="preserve">
-                <g>
-                  <path
-                    d="M9,18c0,7.98,13.63,25.85,14.21,26.61C23.4,44.85,23.69,45,24,45s0.6-0.15,0.79-0.39C25.37,43.85,39,25.98,39,18   c0-8.27-6.73-15-15-15S9,9.73,9,18z M37,18c0,6.27-10.06,20.36-13,24.33C21.06,38.36,11,24.27,11,18c0-7.17,5.83-13,13-13   S37,10.83,37,18z" />
-                  <path
-                    d="M14,18c0,5.51,4.49,10,10,10s10-4.49,10-10S29.51,8,24,8S14,12.49,14,18z M32,18c0,4.41-3.59,8-8,8s-8-3.59-8-8s3.59-8,8-8   S32,13.59,32,18z" />
-                </g>
-              </svg>
-              <span class="location">5km</span>
-
+              <div class="card-title-location">
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="svg-location"
+                  version="1.1" x="0px" y="0px" viewBox="0 0 48 60" style="enable-background: new 0 0 48 48"
+                  xml:space="preserve">
+                  <g>
+                    <path
+                      d="M9,18c0,7.98,13.63,25.85,14.21,26.61C23.4,44.85,23.69,45,24,45s0.6-0.15,0.79-0.39C25.37,43.85,39,25.98,39,18   c0-8.27-6.73-15-15-15S9,9.73,9,18z M37,18c0,6.27-10.06,20.36-13,24.33C21.06,38.36,11,24.27,11,18c0-7.17,5.83-13,13-13   S37,10.83,37,18z" />
+                    <path
+                      d="M14,18c0,5.51,4.49,10,10,10s10-4.49,10-10S29.51,8,24,8S14,12.49,14,18z M32,18c0,4.41-3.59,8-8,8s-8-3.59-8-8s3.59-8,8-8   S32,13.59,32,18z" />
+                  </g>
+                </svg>
+                <span class="location">5km</span>
+              </div>
             </div>
             <div class="card-text">
-
+              <p>
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed eius
+                delectus nobis quibusdam assumenda voluptatum inventore, hic sunt
+                quod. Pariatur dolor, dolorem dolores vero voluptate nulla molestias
+                nemo sed accusamus.
+              </p>
+              <p> Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sit dolor maxime voluptate, recusandae
+                corporis nam, inventore repudiandae, necessitatibus voluptas saepe temporibus officiis. Suscipit, eum
+                nobis eveniet doloremque corporis ratione enim!</p>
             </div>
           </div>
         </article>
@@ -147,20 +162,30 @@
           <div class="card-content">
             <div class="card-title">
               <h3>Ravintola 1</h3>
-              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="svg-location"
-                version="1.1" x="0px" y="0px" viewBox="0 0 48 60" style="enable-background: new 0 0 48 48"
-                xml:space="preserve">
-                <g>
-                  <path
-                    d="M9,18c0,7.98,13.63,25.85,14.21,26.61C23.4,44.85,23.69,45,24,45s0.6-0.15,0.79-0.39C25.37,43.85,39,25.98,39,18   c0-8.27-6.73-15-15-15S9,9.73,9,18z M37,18c0,6.27-10.06,20.36-13,24.33C21.06,38.36,11,24.27,11,18c0-7.17,5.83-13,13-13   S37,10.83,37,18z" />
-                  <path
-                    d="M14,18c0,5.51,4.49,10,10,10s10-4.49,10-10S29.51,8,24,8S14,12.49,14,18z M32,18c0,4.41-3.59,8-8,8s-8-3.59-8-8s3.59-8,8-8   S32,13.59,32,18z" />
-                </g>
-              </svg>
-              <span class="location">5km</span>
-
+              <div class="card-title-location">
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="svg-location"
+                  version="1.1" x="0px" y="0px" viewBox="0 0 48 60" style="enable-background: new 0 0 48 48"
+                  xml:space="preserve">
+                  <g>
+                    <path
+                      d="M9,18c0,7.98,13.63,25.85,14.21,26.61C23.4,44.85,23.69,45,24,45s0.6-0.15,0.79-0.39C25.37,43.85,39,25.98,39,18   c0-8.27-6.73-15-15-15S9,9.73,9,18z M37,18c0,6.27-10.06,20.36-13,24.33C21.06,38.36,11,24.27,11,18c0-7.17,5.83-13,13-13   S37,10.83,37,18z" />
+                    <path
+                      d="M14,18c0,5.51,4.49,10,10,10s10-4.49,10-10S29.51,8,24,8S14,12.49,14,18z M32,18c0,4.41-3.59,8-8,8s-8-3.59-8-8s3.59-8,8-8   S32,13.59,32,18z" />
+                  </g>
+                </svg>
+                <span class="location">5km</span>
+              </div>
             </div>
             <div class="card-text">
+              <p>
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed eius
+                delectus nobis quibusdam assumenda voluptatum inventore, hic sunt
+                quod. Pariatur dolor, dolorem dolores vero voluptate nulla molestias
+                nemo sed accusamus.
+              </p>
+              <p> Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sit dolor maxime voluptate, recusandae
+                corporis nam, inventore repudiandae, necessitatibus voluptas saepe temporibus officiis. Suscipit, eum
+                nobis eveniet doloremque corporis ratione enim!</p>
             </div>
           </div>
         </article>

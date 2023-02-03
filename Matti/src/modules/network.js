@@ -21,6 +21,10 @@ const doFetch = async (url, useProxy = false, options) => {
     if (!response.ok) {
       throw new Error('http error, code: ' + response.status);
     }
+    if (useProxy) {
+    const responseJson = await response.json();
+    return JSON.parse(responseJson.contents);
+    }
     return await response.json();
   } catch (error) {
     throw new Error('doFetch failed: ' + error.message);

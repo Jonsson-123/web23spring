@@ -39,12 +39,11 @@ const renderMenu = (menu, targetElem) => {
     // TODO: add real data to Fazer module
     if (lang === 'fi') {
       lang = 'en';
-      activeMenu[1] = Fazer.coursesEn;
     } else if (lang === 'en') {
       lang = 'fi';
-      activeMenu[1] = Fazer.coursesFi;
     }
     activeMenu[0] = await Sodexo.getDailyMenu(lang);
+    activeMenu[1] = await Fazer.getFazerMenu(lang);
     renderAll();
   }
   );
@@ -59,7 +58,6 @@ const renderMenu = (menu, targetElem) => {
     li.textContent = dish;
     list.append(li);
   }
-
   targetElem.append(list);
   targetElem.append(langButton);
   targetElem.append(randomButton);
@@ -98,16 +96,22 @@ const getRandomDish = (menu) => {
  *
  */
 const renderAll = () => {
+  try {
   for (const [index, menu] of activeMenu.entries()) {
     renderMenu(menu, menuContainers[index]);
   }
+}
+catch (error) {
+  console.error('renderAll', error);
+}
 };
 
 /**
  * App initialization
  */
 const init = async () => {
-  activeMenu = [await Sodexo.getDailyMenu('fi'), Fazer.coursesFi];
+
+  activeMenu = [await Sodexo.getDailyMenu('fi'), await Fazer.getFazerMenu('fi')];
   menuContainers = document.querySelectorAll('.card-text');
   renderAll();
 };
