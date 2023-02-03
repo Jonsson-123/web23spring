@@ -35,16 +35,16 @@ const renderMenu = (menu, targetElem) => {
   });
 
   // Event listener on button to change language
-  langButton.addEventListener('click', () => {
+  langButton.addEventListener('click', async () => {
+    // TODO: add real data to Fazer module
     if (lang === 'fi') {
       lang = 'en';
-      activeMenu[0] = Sodexo.coursesEn;
       activeMenu[1] = Fazer.coursesEn;
     } else if (lang === 'en') {
       lang = 'fi';
-      activeMenu[0] = Sodexo.coursesFi;
       activeMenu[1] = Fazer.coursesFi;
     }
+    activeMenu[0] = await Sodexo.getDailyMenu(lang);
     renderAll();
   }
   );
@@ -106,8 +106,8 @@ const renderAll = () => {
 /**
  * App initialization
  */
-const init = () => {
-  activeMenu = [Sodexo.coursesFi, Fazer.coursesFi];
+const init = async () => {
+  activeMenu = [await Sodexo.getDailyMenu('fi'), Fazer.coursesFi];
   menuContainers = document.querySelectorAll('.card-text');
   renderAll();
 };
