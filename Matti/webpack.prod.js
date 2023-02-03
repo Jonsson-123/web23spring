@@ -38,6 +38,7 @@ module.exports = merge(common, {
       description: 'Metropolia student lunch menus',
       background_color: '#ffffff',
       crossorigin: 'use-credentials',
+      publicPath: '.',
       icons: [
         {
           src: path.resolve('src/assets/img/icon.png'),
