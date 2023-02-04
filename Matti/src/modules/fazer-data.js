@@ -66,7 +66,6 @@ const parseFazerMenu = (dailyMenu) => {
  */
 const getNutrientsOfMealFazer = (index, menu) => {
 
-  console.log("mehnui", menu);
 
   try {
     const recipeIngridient = [];
