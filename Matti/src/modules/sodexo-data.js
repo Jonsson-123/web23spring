@@ -39,6 +39,12 @@ const getDailyMenu = async () => {
   }
 
 };
+/** Function for parsing Sodexo menu
+ *
+ * @param {*} menu object containing daily Sodexo menu
+ * @param {*} lang selected language for meal titles
+ * @returns meal names or a 'nodata' menu if data is undefined (this means API fetch failed)
+ */
 const parseSodexoMenu = (menu, lang) =>  {
   if (menu === undefined){
     const failedFetch = [];
@@ -49,6 +55,11 @@ const parseSodexoMenu = (menu, lang) =>  {
   return lang === 'en' ? coursesEn : coursesFi;
 };
 
+/** Parses daily menu object's recipes and nutrients of a selected meal
+ *
+ * @param {*} object meal object
+ * @returns object containing recipes and their nutrients
+ */
 const getNutrientsOfMealSodexo = (object) => {
 
   try {
@@ -68,7 +79,10 @@ catch (error) {
   alert('no data');
 }
 };
-
+/** Function for creating an alert string with a meal's recipes and their nutrients
+ *
+ * @param {*} recipeObject  Object containing recipe data
+ */
 const createAlertStringSodexo = (recipeObject) => {
 
   const recipeItemName = recipeObject.recipeIngridient;

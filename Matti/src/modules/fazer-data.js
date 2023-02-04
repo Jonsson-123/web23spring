@@ -11,7 +11,7 @@ import MenuEn from '../mock-data/fazer-example-en.json';
 import { doFetch, getWeekdayIndex } from './network';
 
 
-
+// MOCK DATA
 const coursesFi = MenuFi.MenusForDays[0].SetMenus.map((menuItem) => {
   return menuItem.Components.join(', ');
 });
@@ -19,7 +19,11 @@ const coursesFi = MenuFi.MenusForDays[0].SetMenus.map((menuItem) => {
 const coursesEn = MenuEn.MenusForDays[0].SetMenus.map((menuItem) => {
   return menuItem.Components.join(', ');
 });
-
+/** Function for fetching daily fazer menu
+ *
+ * @param {*} lang fetched menu's language
+ * @returns daily menu from Fazer's API, weekends return past fridays menu.
+ */
 const getFazerMenu = async (lang) => {
 
   try {
@@ -39,11 +43,10 @@ const getFazerMenu = async (lang) => {
 
 };
 /** Function for parsing fazer menu
- * @param {*} weeklyMenu - Array containing daily Fazer menu
- * @returns meal names from Array
+ * @param {*} weeklyMenu Array containing daily Fazer menu
+ * @returns meal names from array or a 'nodata' menu if data is undefined (this means API fetch failed)
  */
 const parseFazerMenu = (dailyMenu) => {
-  console.log(dailyMenu);
   if (dailyMenu === undefined) {
     const failedFetch = [];
     return failedFetch[0] = ['no data'];
@@ -55,13 +58,15 @@ const parseFazerMenu = (dailyMenu) => {
    });
   return parsedMenu;
 };
-/**
+/** Parses daily menu array's recipes and nutrients of a selected meal
  *
- * @param {*} index
- * @param {*} menu
- * @returns
+ * @param {*} index index of meal
+ * @param {*} menu daily fazer menu
+ * @returns  object containing recipes and their nutrients
  */
 const getNutrientsOfMealFazer = (index, menu) => {
+
+  console.log("mehnui", menu);
 
   try {
     const recipeIngridient = [];
@@ -79,13 +84,12 @@ const getNutrientsOfMealFazer = (index, menu) => {
 
 /** Function for creating an alert string with a meal's recipes and their nutrients
  *
- * @param {*} recipeObject - Object containing recipe data
+ * @param {*} recipeObject  Object containing recipe data
  */
 const createAlertStringFazer = (recipeObject) => {
 
   const recipeItemName = recipeObject.recipeIngridient;
   const recipeItemNameInfo = recipeObject.recipeIngridientInfo;
-
   let alertString = 'Aterian ravintoarvot: ';
   for (let i = 0; i < recipeItemName.length; i++) {
     alertString += recipeItemName[i];
