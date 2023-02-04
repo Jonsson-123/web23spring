@@ -178,7 +178,7 @@ const showMealInfo = (meal) => {
 };
 
 
-// Execute function on keyup
+// Execute function on keyup, creates an autocomplete listing under search field
 input.addEventListener('keyup', (evt) => {
 
   // A combined array of the activeMenus
