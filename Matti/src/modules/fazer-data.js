@@ -37,7 +37,7 @@ const getFazerMenu = async (lang) => {
     console.error('getFazerMenu', error);
   }
   const failedFetch = [];
-  return failedFetch[0] = ['no data'];
+  return failedFetch[0] = ['no data for today'];
 };
 
 

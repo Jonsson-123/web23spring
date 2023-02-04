@@ -37,7 +37,7 @@ const getDailyMenu = async (lang) => {
     console.error('getDailyMenu error', error);
   }
   const failedFetch = [];
-  return failedFetch[0] = ['no data'];
+  return failedFetch[0] = ['no data for today'];
 };
 
 const Sodexo = {getDailyMenu};
