@@ -247,6 +247,19 @@ button {
   margin-right: 5px;
 
 }
+.list {
+  width: 100%;
+  background-color: #ffffff;
+  border-radius: 0 0 5px 5px;
+  position: absolute;
+}
+.list-items {
+  padding: 10px 5px;
+}
+.list-items:hover {
+  background-color: #dddddd;
+}
+
 @media (max-width: 882px) {
 
   .toggle-nav {

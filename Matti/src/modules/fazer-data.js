@@ -24,25 +24,78 @@ const getFazerMenu = async (lang) => {
 
   try {
   const today = new Date().toISOString().split('T').shift();
-  const menuUrl = 'https://www.compass-group.fi/menuapi/week-menus?costCenter=3208&language='+lang+'&date=2023-02-02';
-  const menu = await doFetch(menuUrl, true);
-  const coursesByMeal = menu.menus[getWeekdayIndex()].menuPackages.map((menuPackage) => {
-    return menuPackage.meals.map((menuItem) => {
-      return menuItem.name;
-    }).join(', ');
-   });
-   return coursesByMeal;
+  const menuUrl = 'https://www.compass-group.fi/menuapi/week-menus?costCenter=3208&language='+lang+'&date='+today;
+  const weeklyMenu = await doFetch(menuUrl, true);
+  const menu = weeklyMenu.menus[getWeekdayIndex()];
+
+  if (menu === undefined) {
+    alert('no Fazer data for today, showing past fridays data');
+    return weeklyMenu.menus[4];
+  }
+  return weeklyMenu.menus[getWeekdayIndex()];
   } catch (error){
     console.error('getFazerMenu', error);
   }
-  const failedFetch = [];
-  return failedFetch[0] = ['no data'];
+
+};
+/** Function for parsing fazer menu
+ * @param {*} weeklyMenu - Array containing daily Fazer menu
+ * @returns meal names from Array
+ */
+const parseFazerMenu = (dailyMenu) => {
+  console.log(dailyMenu);
+  if (dailyMenu === undefined) {
+    const failedFetch = [];
+    return failedFetch[0] = ['no data'];
+  }
+  const parsedMenu = dailyMenu.menuPackages.map((menuPackage) => {
+    return menuPackage.meals.map((mealItem) => {
+      return mealItem.name;
+    }).join(', ');
+   });
+  return parsedMenu;
+};
+/**
+ *
+ * @param {*} index
+ * @param {*} menu
+ * @returns
+ */
+const getNutrientsOfMealFazer = (index, menu) => {
+
+  try {
+    const recipeIngridient = [];
+    const recipeIngridientInfo = [];
+    menu.menuPackages[index].meals.forEach(mealItem => {
+      recipeIngridient.push(mealItem.name);
+      recipeIngridientInfo.push(Object.entries(mealItem.nutrients));
+    });
+    return {recipeIngridient, recipeIngridientInfo};
+  }
+  catch (error) {
+    alert('no data');
+  }
+};
+
+/** Function for creating an alert string with a meal's recipes and their nutrients
+ *
+ * @param {*} recipeObject - Object containing recipe data
+ */
+const createAlertStringFazer = (recipeObject) => {
+
+  const recipeItemName = recipeObject.recipeIngridient;
+  const recipeItemNameInfo = recipeObject.recipeIngridientInfo;
+
+  let alertString = 'Aterian ravintoarvot: ';
+  for (let i = 0; i < recipeItemName.length; i++) {
+    alertString += recipeItemName[i];
+    alertString += '\n';
+    alertString += recipeItemNameInfo[i];
+    alertString += '\n';
+  }
+  alert(alertString);
 };
 
 
-
-
-
-
-const Fazer = {getFazerMenu};
+const Fazer = {getFazerMenu, parseFazerMenu, getNutrientsOfMealFazer, createAlertStringFazer};
 export default Fazer;

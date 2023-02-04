@@ -12,6 +12,8 @@ let lang = 'fi';
 let menuContainers = [];
 let activeMenu = [];
 
+let fazerDailyMenu = [];
+let sodexoDailyMenu = [];
 
 /**
  * Renders menu content to html page
@@ -42,8 +44,9 @@ const renderMenu = (menu, targetElem) => {
     } else if (lang === 'en') {
       lang = 'fi';
     }
-    activeMenu[0] = await Sodexo.getDailyMenu(lang);
-    activeMenu[1] = await Fazer.getFazerMenu(lang);
+    activeMenu[0] = await Sodexo.parseSodexoMenu(sodexoDailyMenu, lang);
+    fazerDailyMenu = await Fazer.getFazerMenu(lang);
+    activeMenu[1] = Fazer.parseFazerMenu(fazerDailyMenu);
     renderAll();
   }
   );
@@ -97,13 +100,13 @@ const getRandomDish = (menu) => {
  */
 const renderAll = () => {
   try {
-  for (const [index, menu] of activeMenu.entries()) {
-    renderMenu(menu, menuContainers[index]);
+    for (const [index, menu] of activeMenu.entries()) {
+      renderMenu(menu, menuContainers[index]);
+    }
   }
-}
-catch (error) {
-  console.error('renderAll', error);
-}
+  catch (error) {
+    console.error('renderAll', error);
+  }
 };
 
 /**
@@ -111,12 +114,102 @@ catch (error) {
  */
 const init = async () => {
 
-  activeMenu = [await Sodexo.getDailyMenu('fi'), await Fazer.getFazerMenu('fi')];
+  sodexoDailyMenu = await Sodexo.getDailyMenu();
+  fazerDailyMenu = await Fazer.getFazerMenu('fi');
+  activeMenu = [Sodexo.parseSodexoMenu(sodexoDailyMenu, 'fi'), Fazer.parseFazerMenu(fazerDailyMenu)];
   menuContainers = document.querySelectorAll('.card-text');
+
+
+  // Combine all the meal names into a single global array
   renderAll();
 };
 
 init();
-
 pwaFunctions.applyServiceWorkers();
+
+const input = document.querySelector('.search');
+
+
+/** Prints a meal name into the input field
+ *
+ * @param {String} name - Name of a meal
+ */
+const displayNames = (name) => {
+  input.value = name;
+  removeElements();
+  showMealInfo(name);
+};
+
+/** Removes previous listings under search bar
+ *
+ */
+const removeElements = () => {
+  //clear all the item
+  let items = document.querySelectorAll('.list-items');
+  items.forEach((item) => {
+    item.remove();
+  });
+};
+
+
+/** Prints the nutrient info of a meal
+ *
+ * @param {*} meal - name of a meal
+ */
+const showMealInfo = (meal) => {
+
+  // Check if the selected meal belongs to Sodexo menu
+  if (activeMenu[0].includes(meal)) {
+    // Find the selected meals index
+    let selectedIndex = Object.values(activeMenu[0]).indexOf(meal);
+    // Find the select info with the index
+    let objectOfSelectedIndex = Object.values(sodexoDailyMenu.courses)[selectedIndex];
+    // Alert the recipe names and their nutrients
+
+    Sodexo.createAlertStringSodexo(Sodexo.getNutrientsOfMealSodexo(objectOfSelectedIndex));
+
+  }
+  // Check if the selected meal belongs to Fazer menu
+  if (activeMenu[1].includes(meal)) {
+     // Alert the recipe names and their nutrients
+    let selectedIndex = Object.values(activeMenu[1]).indexOf(meal);
+    Fazer.createAlertStringFazer(Fazer.getNutrientsOfMealFazer(selectedIndex, fazerDailyMenu));
+  };
+};
+
+
+// Execute function on keyup
+input.addEventListener('keyup', (evt) => {
+
+  // A combined array of the activeMenus
+  const entireActiveMenus = [...activeMenu[0], ...activeMenu[1]];
+  entireActiveMenus.sort();
+
+  // Delete empty meals from array
+  const empty = entireActiveMenus.indexOf('no data');
+  if (empty !== -1 )entireActiveMenus.splice(empty);
+
+  //loop through above array
+  //Initially remove all elements ( so if user erases a letter or adds new letter then clean previous outputs)
+  removeElements();
+  for (const index of entireActiveMenus) {
+
+    if (index.toLowerCase().startsWith(input.value.toLowerCase()) && input.value != '') {
+      //create li element
+      const listItem = document.createElement('li');
+      //One common class name
+      listItem.classList.add('list-items');
+      listItem.style.cursor = 'pointer';
+
+      listItem.addEventListener('click', () => {
+        displayNames(index);
+      });
+
+      //display the value in array (Selects only first word)
+      listItem.innerHTML = index.split(',')[0] + '...';
+      document.querySelector('.list').appendChild(listItem);
+    }
+  }
+});
+
 
