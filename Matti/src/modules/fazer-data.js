@@ -24,8 +24,9 @@ const getFazerMenu = async (lang) => {
 
   try {
   const today = new Date().toISOString().split('T').shift();
-  const menuUrl = 'https://www.compass-group.fi/menuapi/week-menus?costCenter=3208&language='+lang+'&date=2023-02-02';
+  const menuUrl = 'https://www.compass-group.fi/menuapi/week-menus?costCenter=3208&language='+lang+'&date='+today;
   const menu = await doFetch(menuUrl, true);
+
   const coursesByMeal = menu.menus[getWeekdayIndex()].menuPackages.map((menuPackage) => {
     return menuPackage.meals.map((menuItem) => {
       return menuItem.name;
