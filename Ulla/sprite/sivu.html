@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <title>Viikko 5 sprite animaatio</title>
+    <style>
+        html, body {
+            font-family: 'Press Start 2P', cursive;
+        }
+      /* 
+        @keyframes
+        animation-name
+        animation-duration
+        animation-delay
+        animation-iteration-count
+        animation-direction
+        animation-timing-function
+        animation-fill-mode
+        animation
+        */
+      .doggo {
+        background-image: url(./sprite.png);
+        width: calc(600px / 5);
+        height: 110px;
+        background-position: 0 0;
+        /*
+        animation-name: doggowalk;
+        animation-duration: 0.5s;
+        /*animation-fill-mode: forwards;
+        
+        animation-delay: 0;
+        animation-iteration-count: infinite;
+        /*animation-direction: normal;
+        
+        animation-timing-function:steps(5);
+        */
+        position: absolute;
+        bottom: 57px;
+        left: 10px;
+        
+        animation: doggowalk 0.5s steps(5) 8, doggomove 4s linear forwards,
+        doggosniff 0.5s steps(2) 4s 4;
+      }
+      main {
+        width:800px;
+        margin: auto;
+      }
+      .stage{
+        background-image: url(./stage.png);
+        width: 800px;
+        height: 480px;
+        background-size: contain;
+        position: relative;
+      }
+      .bird{
+        background-image: url(./sprite.png);
+        width: 70px;
+        height: 70px;
+        background-position: 0 -220px;
+        position: absolute;
+        animation: birdfly 0.5s steps(3) infinite,
+        birdmove 8s linear forwards;
+        left:0;
+        top:100px;
+      }
+      .paused {
+        animation-play-state: paused;
+      }
+      .running {
+        animation-play-state: running;
+      }
+      @keyframes doggowalk {
+        0% {
+            background-position: 0 0;
+         }
+        100% { 
+            background-position: -600px 0;
+        }
+      }
+      @keyframes doggomove {
+        0% {
+            left: 0px;
+        }
+        100% {
+            left:300px
+        }
+      }
+      @keyframes doggosniff {
+        from {
+            background-position: -360px 0;
+        }
+        to {
+            background-position: -600px 0;
+        }
+      }
+      @keyframes birdfly {
+        from {
+            background-position: 0 -220px;
+        }
+        to {
+            background-position: -240px -240px;
+        }
+      }
+      @keyframes birdmove {
+        from {
+            left:0px;
+        }
+        to {
+            left:700px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+    <h1>Duckhunt sivusto</h1>
+    <div class="stage">
+    <div class="doggo"></div>
+    <div class="bird"></div>
+    </div>
+    <p>Duck Hunt is a 1984 light gun shooter video game developed and published by Nintendo for the Nintendo Entertainment System (NES) video game console and the Nintendo Vs. System arcade hardware. The game was first released in April 1984, in Japan for the Family Computer (Famicom) console and in North America as an arcade game. It was then released as a launch game for the NES in North America in October 1985, with it also releasing in Europe two years later.
+
+    </p>
+    
+</main>
+<script>
+    const bird = document.querySelector('.bird');
+    bird.addEventListener('click', () => {
+        console.log("clickattu");
+        bird.classList.add('paused');
+    });
+</script>
+  </body>
+</html>
