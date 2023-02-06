@@ -20,11 +20,11 @@ const coursesEn = MenuEn.MenusForDays[0].SetMenus.map((menuItem) => {
   return menuItem.Components.join(', ');
 });
 
-const getFazerMenu = async (lang) => {
+const getFazerMenu = async (lang, restaurantId) => {
 
   try {
   const today = new Date().toISOString().split('T').shift();
-  const menuUrl = 'https://www.compass-group.fi/menuapi/week-menus?costCenter=3208&language='+lang+'&date='+today;
+  const menuUrl = 'https://www.compass-group.fi/menuapi/week-menus?costCenter='+restaurantId+'&language='+lang+'&date='+today;
   const menu = await doFetch(menuUrl, true);
 
   const coursesByMeal = menu.menus[getWeekdayIndex()].menuPackages.map((menuPackage) => {
