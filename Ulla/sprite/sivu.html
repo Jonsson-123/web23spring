@@ -107,10 +107,14 @@
         }
       }
       @keyframes birdmove {
-        from {
+        0% {
             left:0px;
         }
-        to {
+        60% {
+            top:300px;
+            left:200px;
+        }
+        100% {
             left:700px;
         }
       }
@@ -133,6 +137,7 @@
     bird.addEventListener('click', () => {
         console.log("clickattu");
         bird.classList.add('paused');
+        bird.style.display = "none";
     });
 </script>
   </body>
