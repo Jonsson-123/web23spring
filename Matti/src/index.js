@@ -4,6 +4,7 @@ import Soupphoto from "./assets/img/soup_photo1.jpg";
 import Sodexo from "./modules/sodexo-data";
 import Fazer from "./modules/fazer-data";
 import pwaFunctions from "./modules/pwa-module";
+import HSL from './modules/hsl';
 const headerRight = document.querySelector(".header-right");
 headerRight.src = Soupphoto;
 
@@ -12,6 +13,7 @@ let lang = "fi";
 const restaurants = [
   { name: "Myllypuro", id: 152, type: "Sodexo" },
   { name: "Karamalmi", id: 3208, type: "Fazer" },
+  { name: "Myllypuro", id: 158, type: "Sodexo" },
 ];
 
 const saveSettings = () => {
@@ -34,10 +36,12 @@ const loadSettings = () => {
  * Renders menu content to html page
  * @param {Array} menu - array of dishes
  */
-const renderMenu = (menu, targetElem) => {
+const renderMenu = (menu, title, targetElem) => {
   const menuContainer = document.createElement("article");
   menuContainer.classList.add("item");
   targetElem.append(menuContainer);
+  const h3 = document.createElement('h3');
+  h3.textContent = title;
   const list = document.createElement("ul");
   const langButton = document.createElement("button");
   const randomButton = document.createElement("button");
@@ -50,7 +54,6 @@ const renderMenu = (menu, targetElem) => {
   sortButton.addEventListener("click", () => {
     renderMenu(sortMenu(menu), targetElem);
   });
-
   // Event listener on button to change language
   langButton.addEventListener("click", async () => {
     // TODO: add real data to Fazer module
@@ -72,11 +75,13 @@ const renderMenu = (menu, targetElem) => {
     li.textContent = dish;
     list.append(li);
   }
+  menuContainer.append(h3);
   menuContainer.append(list);
   menuContainer.append(langButton);
   menuContainer.append(randomButton);
   menuContainer.append(sortButton);
   targetElem.append(menuContainer);
+
 };
 
 /**
@@ -119,12 +124,44 @@ const renderAll = async () => {
       if (restaurant.type === "Fazer") {
         menu = await Fazer.getFazerMenu(lang, restaurant.id);
       }
-      renderMenu(menu, menuWrapper);
+      renderMenu(menu, restaurant.name, menuWrapper);
     }
   } catch (error) {
     console.error("renderAll", error);
   }
 };
+
+
+const renderHSLData = async () => {
+  const routes = await HSL.getRoutesByStopId(2132208);
+  console.log(routes);
+  const target = document.querySelector('.transport-info');
+  const ul = document.createElement('ul');
+  for (const route of routes) {
+    const li = document.createElement('li');
+    li.textContent = `${route.name} saapuu ${route.realtimeArrival}`;
+    ul.append(li);
+  }
+  target.append(ul);
+};
+
+
+const screenCarousel = (activeScreenIndex, delay) => {
+  let screens = document.querySelectorAll('.restaurant-area, .transport-info');
+  console.log("asd", screens);
+  for (const screen of screens) {
+    screen.style.display = 'none';
+  }
+  screens[activeScreenIndex].style.display = 'flex';
+  setTimeout(() => {
+    let nextScreen = activeScreenIndex + 1;
+    if (activeScreenIndex === screens.length - 1) {
+      nextScreen = 0;
+    }
+    screenCarousel(nextScreen, delay);
+  }, delay * 1000);
+};
+
 
 /**
  * App initialization
@@ -132,6 +169,8 @@ const renderAll = async () => {
 const init = async () => {
   loadSettings();
   renderAll();
+  renderHSLData();
+  //screenCarousel(0, 2);
 };
 
 init();
