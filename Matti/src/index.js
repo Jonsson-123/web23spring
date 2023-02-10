@@ -5,15 +5,24 @@ import Sodexo from './modules/sodexo-data';
 import Fazer from './modules/fazer-data';
 import pwaFunctions from './modules/pwa-module';
 const headerRight = document.querySelector('.header-right');
+const saveButton = document.querySelector('#saveButton');
 headerRight.src = Soupphoto;
 
 //Global variables
+let darkmode;
 let lang = 'fi';
 let menuContainers = [];
 let activeMenu = [];
 
 let fazerDailyMenu = [];
 let sodexoDailyMenu = [];
+
+
+const restaurants = [
+  { name: "Myyrmäki", id: 152, type: "Sodexo" },
+  { name: "Karamalmi", id: 3208, type: "Fazer" },
+  { name: "Myllypuro", id: 158, type: "Sodexo" },
+];
 
 /**
  * Renders menu content to html page
@@ -213,3 +222,48 @@ input.addEventListener('keyup', (evt) => {
 });
 
 
+/**
+ * Saves settings to localstorage
+ */
+const saveSettings = () => {
+  console.log("JEEE");
+  const settings = {};
+  settings.darkmode = darkmode;
+  localStorage.setItem("settings", JSON.stringify(settings));
+  //TODO: implement button for saving usersettings
+  //TODO : implement ui functionality for adding restaurants
+};
+
+saveButton.addEventListener('click', () => {
+  saveSettings();
+});
+
+/**
+ * Changes the lighting option for the website
+ */
+const changeLighting = () => {
+  const body =  document.querySelector('body');
+  if (darkmode) {
+    body.classList.add('darkmode');
+  }
+  else {
+    body.classList.remove('darkmode');
+  }
+};
+
+const toggleLightMode = document.querySelector('#togglelightmode');
+toggleLightMode.addEventListener('click', () => {
+  if (darkmode) darkmode = false;
+  else if (!darkmode) darkmode = true;
+  changeLighting();
+
+});
+/**
+ * Loads settings from localstorage
+ */
+const loadSettings = () => {
+  darkmode = (JSON.parse(localStorage.settings)).darkmode;
+  changeLighting();
+  // TODO: load settings (e.g restaurant array) from localstorage
+};
+loadSettings();

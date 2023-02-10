@@ -13,7 +13,36 @@
 :root{
   --main-em-color:#940e3f;
   --main-bg-color:#43e04f;
+  --main-body-color:white;
   --secondary-em-color:#000000;
+  --secondary-body-color:#000000;
+  --search:#940e3f;
+}
+.darkmode{
+  --main-em-color:#fdfdfd;
+  --main-bg-color:#ade6b2;
+  --main-body-color:rgb(13, 23, 51);
+  --secondary-em-color:rgb(194, 189, 189);
+  --search:rgb(13, 23, 51);
+  --secondary-body-color:rgb(194, 190, 190);
+}
+ li {
+ color:var(--secondary-body-color);
+}
+.card-content h3 {
+  color:var(--secondary-body-color);
+}
+.card-content span {
+  color:var(--secondary-body-color);
+}
+.info-text p {
+  color:var(--secondary-body-color);
+}
+.add h3 {
+  color:var(--secondary-body-color);
+}
+#togglelightmode {
+  color:var(--secondary-body-color);
 }
 * {
   margin: 0;
@@ -26,6 +55,7 @@
 body {
   max-width: 1500px;
   margin: auto;
+  background-color: var(--main-body-color);
 }
 .main-nav {
   display: flex;
@@ -33,7 +63,7 @@ body {
   align-items: center;
   justify-content: space-between;
   position: fixed;
-  background: white;
+  background: var(--main-body-color);
   top: 0;
   z-index: 3;
   width: 100%;
@@ -54,7 +84,7 @@ body {
   font-family: Lato-Bold;
 }
 .nav-ul li a:hover {
-  color: #ffffff;
+  color: var(--main-body-color);
   background-color: #e0437c;
 }
 .nav-ul li a:focus {
@@ -212,7 +242,7 @@ body {
   position: absolute;
   left: 1.5em;
   top: 22%;
-  fill: var(--main-em-color);
+  fill: var(--search);
 }
 .svg-location {
   margin-top: -0.85rem;
@@ -249,7 +279,7 @@ button {
 }
 .list {
   width: 100%;
-  background-color: #ffffff;
+  background-color: var(--main-body-color);
   border-radius: 0 0 5px 5px;
   position: absolute;
 }
@@ -257,7 +287,7 @@ button {
   padding: 10px 5px;
 }
 .list-items:hover {
-  background-color: #dddddd;
+  background-color: var(--main-body-color);
 }
 
 @media (max-width: 882px) {
@@ -275,7 +305,7 @@ button {
     position: fixed;
     left:-100%;
     flex-direction: column;
-    background-color: #ffffff;
+    background-color: var(--main-body-color);
     width: 100%;
     text-align: center;
     transition: 0.3s;
@@ -343,3 +373,4 @@ button {
   }
 
 }
+
