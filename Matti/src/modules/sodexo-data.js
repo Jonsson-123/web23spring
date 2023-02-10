@@ -15,19 +15,19 @@ import { doFetch, getWeekdayIndex } from './network';
 //const dailyUrl = 'https://www.sodexo.fi/ruokalistat/output/daily_json/152/' + today;
 
 
-const weeklyUrl = 'https://www.sodexo.fi/ruokalistat/output/weekly_json/152';
+const weeklyUrl = 'https://www.sodexo.fi/ruokalistat/output/weekly_json/';
 
 /** Get daily menu from Sodexo API
  *
  * @param {*} lang - menu language 'fi'/'en'
  * @returns Menu array
  */
-const getDailyMenu = async () => {
+const getDailyMenu = async (restaurantId) => {
   try {
   //using dailyUrl
   // const menu = await doFetch(dailyUrl);
   // using weeklyUrl
-  const weeklyMenu = await doFetch(weeklyUrl);
+  const weeklyMenu = await doFetch(weeklyUrl + restaurantId);
   const menu = weeklyMenu.mealdates[getWeekdayIndex()];
   if (menu === undefined) {
     alert('no Sodexo data for today, showing past fridays data');
