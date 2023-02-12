@@ -379,6 +379,10 @@ button {
   pointer-events: all;
 
 }
+.restaurant-area li {
+  list-style: auto;
+  margin-left: 5px;
+}
 @media (max-width: 1600px) {
   body {
     max-width: 100%;
