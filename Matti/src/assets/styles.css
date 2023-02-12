@@ -329,7 +329,7 @@ button {
   border-radius: 5px;
   z-index: 10;
   color:var(--main-body-color);
-  background-color: var(--secondary-em-color);
+  background-color: var(--main-bg-color);
   width: 500px;
   max-width: 80%;
 

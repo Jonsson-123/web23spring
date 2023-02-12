@@ -24,11 +24,11 @@ const coursesEn = MenuEn.MenusForDays[0].SetMenus.map((menuItem) => {
  * @param {*} lang fetched menu's language
  * @returns daily menu from Fazer's API, weekends return past fridays menu.
  */
-const getFazerMenu = async (lang) => {
+const getFazerMenu = async (lang, restaurantId) => {
 
   try {
   const today = new Date().toISOString().split('T').shift();
-  const menuUrl = 'https://www.compass-group.fi/menuapi/week-menus?costCenter=3208&language='+lang+'&date='+today;
+  const menuUrl = 'https://www.compass-group.fi/menuapi/week-menus?costCenter='+restaurantId+'&language='+lang+'&date='+today;
   const weeklyMenu = await doFetch(menuUrl, true);
   const menu = weeklyMenu.menus[getWeekdayIndex()];
 
@@ -65,7 +65,6 @@ const parseFazerMenu = (dailyMenu) => {
  * @returns  object containing recipes and their nutrients
  */
 const getNutrientsOfMealFazer = (index, menu) => {
-
 
   try {
     const recipeIngridient = [];
