@@ -12,7 +12,6 @@ headerRight.src = Soupphoto;
 //Global variables
 let darkmode;
 let lang = 'fi';
-let menuContainers = [];
 let activeMenu = [];
 let fazerDailyMenu = [];
 let sodexoDailyMenu = [];
